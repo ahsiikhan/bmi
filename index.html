@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bmi calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .parent_div{
+            background-color: #2c3e50;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .child_div{
+            width: 90vw;
+            height: 80vh;
+            background-image:linear-gradient(147deg,rgba(255,255,255,0.5)50%,rgba(255,255,255,0.7)50%), url(images/background3.jpg);
+            background-position: center;
+            background-size:cover;
+            box-shadow: 0 10px 20px -6px #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form_div{
+            background-color:rgba(0, 0, 0, 0.6);;
+            width: 50vw;
+            height: 50vh;
+            /* position: relative; */
+
+        }
+        input[type=text]{
+            width: 30%;
+            padding: 12px 20px;
+            display: block;
+            box-sizing: border-box;
+            outline: none;
+            text-align: center;
+            margin: auto;
+            width: 50%;
+            background-color: transparent;
+            border: 1px solid #dfdfdf ;
+            margin-top: 20px;
+            color: #fff;
+            opacity: 0.8;
+            font-size: 16px;
+            
+
+        }
+        .form_header h2{
+            font-size: 25px;
+            font-family: 'DM sans';
+            font-weight: 900;
+            text-align: center;
+            color: #D8DCE0;
+            line-height: 50px;
+            /* border-bottom: 1px solid #CFD7DF; */
+            text-transform: uppercase;
+            padding:10px;
+        }
+        .form_header h2::after{
+            content: " ";
+            display: block;
+            width:14vw;
+            border-bottom: 2px solid #CFD7DF;
+            margin:auto;
+        }
+        ::placeholder{
+            color: #fff;
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
+
+        /*Button CSS*/
+        button{
+            cursor: pointer;
+            color: white;
+            background: black;
+            border: 1px solid white;
+            padding: 10px 30px;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'DM Sans';
+            opacity: 0.8;
+            /* position: absolute; */
+            /* left: 50%;
+            top: 50%;
+            transform: translateX(-50%); */
+            margin: 20px auto;
+            margin-bottom: 25px;
+            display:block;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        button:hover{
+            color: black;
+            background: transparent;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+        input[type=text]:last-child{
+            
+            outline: none;
+            border:none;
+            border-bottom: 2px solid black;
+            color: white;
+            padding: 5px;
+            width: 25%;
+            
+        }
+        input[type=text]:last-child::placeholder{
+            color: black;
+            opacity: 1;
+            font-family: 'DM sans';
+            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: capitalize;
+        }
+        .footer p{
+            color: #cfd7df;
+            font-family: 'DM sans';
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-align: center;
+            padding-top: 30px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body> 
+    <div class="parent_div">
+        <div class="child_div">
+            <div class="form_div">
+                <div class="form_header">
+                    <h2>BMI Calculator</h2>
+                </div>
+                <form onsubmit="return false">
+                    <input type="text" id="weight" name="weight" placeholder="Enter Weight in Kg" required>
+                    <input type="text" id="height" name="height" placeholder="Enter Height in Feet" required>
+                    <button id="cal">Check Bmi</button>
+                    <input type="text" id="result" name="result" placeholder="result" >
+                </form>
+                <div class="footer">
+                    <p>A healthy BMI ranges between 19 & 25</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        checkBmi=document.getElementById("cal");
+        checkBmi.addEventListener('click',()=>{
+            let weight = document.getElementById("weight").value;
+            let height = document.getElementById("height").value;
+            
+            //Convert Height into Meters
+            height = height * 12;
+            height = height * 0.025;
+
+            let bmiVal= weight/( height * height);
+
+            let result=document.getElementById("result");
+            result.value=Math.round(bmiVal);
+       
+        }); 
+    </script>
+</body>
+</html>
