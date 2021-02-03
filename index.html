@@ -12,6 +12,15 @@
             box-sizing: border-box;
             font-family: 'Times New Roman', Times, serif;
         }
+        #preloader{
+            width: 100%;
+            height: 100vh;
+            background:#F4F5F6 url("images/preloader.gif");
+            background-repeat:no-repeat;
+            position: fixed;
+            z-index: 999;
+            background-position: center;
+        }
         .parent_div{
             background-color: #2c3e50;
             width: 100vw;
@@ -19,6 +28,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        .child_div #logo{
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        .child_div .logo_img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: left;
+            width: 150px;
+            margin: 20px;
         }
         .child_div{
             width: 90vw;
@@ -30,12 +52,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         .form_div{
             background-color:rgba(0, 0, 0, 0.6);;
             width: 50vw;
             height: 50vh;
-            /* position: relative; */
 
         }
         input[type=text]{
@@ -140,11 +162,50 @@
             text-transform: uppercase;
             opacity: 0.9;
         }
+        /*responsive css*/
+        @media(max-width: 767px){
+            .child_div .logo_img{
+                margin: 10px;
+                width: 120px;
+            }
+            .child_div{
+                width: 94vw;
+            }
+            .form_div{
+                width: 70vw;
+                height: 55vh;
+            }
+            .form_header h2::after{
+                width:30vw;    
+            }  
+
+        }
+        @media(max-width:574px){
+            .child_div .logo_img{
+                margin: 5px;
+                width: 100px;
+            }
+            .child_div{
+                width: 96vw;
+                height: 97vh;
+            }
+            .form_div{
+                width: 86vw;
+                height: 50vh;
+            }
+            .form_header h2::after{
+                width:40vw;    
+            } 
+        }
     </style>
 </head>
-<body> 
+<body onload="loader()"> 
+    <div id="preloader">
+
+    </div>
     <div class="parent_div">
         <div class="child_div">
+            <a href="https://ahsiikhan.github.io/servicx/" id="logo"><img src="images/logo.png" alt="Ahsii" class="logo_img"></a>
             <div class="form_div">
                 <div class="form_header">
                     <h2>BMI Calculator</h2>
@@ -163,7 +224,20 @@
     </div>
 
     <script>
-        
+        /*Pre Loader Start-------*/
+            const loader=()=>{
+                const pLoader = document.getElementById("preloader");
+                pLoader.style.display="none";
+            }
+
+        /*Pre Loader End-------*/
+
+
+
+
+
+
+
         checkBmi=document.getElementById("cal");
         checkBmi.addEventListener('click',()=>{
             let weight = document.getElementById("weight").value;
@@ -179,6 +253,9 @@
             result.value=Math.round(bmiVal);
        
         }); 
+
+
+        
     </script>
 </body>
 </html>
